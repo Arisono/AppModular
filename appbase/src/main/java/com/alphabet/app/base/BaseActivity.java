@@ -3,7 +3,6 @@ package com.alphabet.app.base;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -21,14 +20,10 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     /*设置是否全屏显示*/
     private boolean isFullScreen = false;
     /*设置是否禁止旋转屏幕*/
-    /*是否输入日志信息*/
-    protected boolean isDebug = true;
-    protected  final String TAG =this.getClass().getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        $Log(TAG + "-->onCreate()");
         if (isSetStatusBar){
             setStatusBar();
         }
@@ -114,19 +109,17 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     @Override
     protected void onResume() {
         super.onResume();
-        $Log(TAG + "-->onResume()");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        $Log(TAG + "-->onPause()");
+    
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        $Log(TAG + "-->onDestroy()");
     }
 
     // findViewById
@@ -146,11 +139,11 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
 
     
     // Log
-    protected void $Log(String msg) {
-        if (isDebug) {
-            Log.d(this.getClass().getName(), msg);
-        }
-    }
+//    protected void $Log(String msg) {
+//        if (isDebug) {
+//            Log.d(this.getClass().getName(), msg);
+//        }
+//    }
 
 
     // startActivity

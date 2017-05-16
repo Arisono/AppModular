@@ -5,6 +5,6 @@ package com.alphabet.app.http.rx;
  * 回调接口
  * @param <T>
  */
-public interface SubscriberOnNextListener<T> {
-	 void onNext(T t);
+public interface Result1Listener<T> extends ResultListener<T>{
+	void onResponse(T t);
 }

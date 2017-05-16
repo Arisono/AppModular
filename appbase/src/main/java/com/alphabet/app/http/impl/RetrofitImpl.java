@@ -10,6 +10,7 @@ import com.alphabet.app.http.service.ParamService;
 import com.alphabet.app.http.ssl.TrustAllCerts;
 import com.alphabet.app.http.ssl.TrustAllHostnameVerifier;
 import com.google.gson.Gson;
+import com.orhanobut.logger.Logger;
 
 import java.security.SecureRandom;
 import java.util.concurrent.TimeUnit;
@@ -108,6 +109,7 @@ public class RetrofitImpl extends HttpBase {
 					@Override
 					public Observable<?> call(Throwable t) {
 						if (++count <= mbuilder.getMaxRetryCount()) {
+							Logger.d("请求重试"+count+"："+t.getMessage());
 							Observable<?> ob=	Observable.timer(mbuilder.getRetryTimeout(), TimeUnit.MILLISECONDS);
 							return ob;
 						}

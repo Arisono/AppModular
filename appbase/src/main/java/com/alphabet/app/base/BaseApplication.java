@@ -2,6 +2,9 @@ package com.alphabet.app.base;
 
 import android.app.Application;
 
+import com.orhanobut.logger.LogLevel;
+import com.orhanobut.logger.Logger;
+
 /**
  * Created by Arison on 2017/5/15.
  */
@@ -10,6 +13,7 @@ public abstract class BaseApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+      
         mApplication=this;
         init();
         //初始化网络库
@@ -22,10 +26,12 @@ public abstract class BaseApplication extends Application {
         initNotifyHelper();
         //初始化日志打印
         initLogHelper();
+      
     }
 
     public void initLogHelper() {
-        
+        Logger.init().
+                logLevel(LogLevel.FULL);
     }
 
 
