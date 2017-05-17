@@ -12,7 +12,9 @@ import com.alphabet.app.http.ssl.TrustAllHostnameVerifier;
 import com.google.gson.Gson;
 import com.orhanobut.logger.Logger;
 
+import java.io.File;
 import java.security.SecureRandom;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import javax.net.ssl.SSLContext;
@@ -20,8 +22,10 @@ import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
 
 import okhttp3.Cache;
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.OkHttpClient.Builder;
+import okhttp3.RequestBody;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -39,7 +43,9 @@ import rx.functions.Func1;
 public class RetrofitImpl extends HttpBase {
 
 	public Retrofit retrofit;
+	public ParamService paramService;
 	private static RetrofitImpl instance;
+	
 
 	public static RetrofitImpl getInstance() {
 		if (instance == null) {
@@ -55,6 +61,7 @@ public class RetrofitImpl extends HttpBase {
 
 	@Override
 	public void initClient() {
+	    paramService = initApi(ParamService.class);
 		Builder okBuilder = new Builder()
 				.connectTimeout(mbuilder.getConnectTimeout(), TimeUnit.SECONDS)
 				.readTimeout(mbuilder.getReadTimeout(), TimeUnit.SECONDS)
@@ -84,7 +91,6 @@ public class RetrofitImpl extends HttpBase {
 
 	@Override
 	public void get(HttpClient builder, Subscriber<Object> s) {
-		ParamService paramService = initApi(ParamService.class);
 		Observable<Object> o = paramService.getParam(builder.getBaseUrl(), builder.getParams(), builder.getHeaders());
 		toSubscribe(o, s);
 		
@@ -92,8 +98,27 @@ public class RetrofitImpl extends HttpBase {
 
 	@Override
 	public void post(HttpClient builder, Subscriber<Object> s) {
-		ParamService paramService = initApi(ParamService.class);
 		Observable<Object> o = paramService.postParam(builder.getBaseUrl(), builder.getParams(), builder.getHeaders());
+		toSubscribe(o, s);
+	}
+
+	public void uploads(Subscriber<Object> s,String url,Map<String,Object> params){
+		MultipartBody.Builder builder = new MultipartBody.Builder();
+		builder.setType(MultipartBody.FORM);
+		//追加参数
+		for (String key : params.keySet()) {
+			Object object = params.get(key);
+			if (!(object instanceof File)) {
+				builder.addFormDataPart(key, object.toString());
+			} else {
+				File file = (File) object;
+				//其中参数“file”和服务器接收的参数 一一对应,保证多文件上传唯一key不变
+				builder.addFormDataPart("file", file.getName(), RequestBody.create(null, file));
+			}
+		}
+		//创建RequestBody
+		RequestBody body = builder.build();
+		Observable<Object> o=paramService.uploads(url, body);
 		toSubscribe(o, s);
 	}
 

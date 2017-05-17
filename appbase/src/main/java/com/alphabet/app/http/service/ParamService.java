@@ -2,6 +2,8 @@ package com.alphabet.app.http.service;
 
 import java.util.Map;
 
+import okhttp3.RequestBody;
+import retrofit2.http.Body;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -34,5 +36,10 @@ public interface ParamService {
 	@FormUrlEncoded
 	@POST()
 	Observable<Object> postParam(@Url String url, @FieldMap Map<String, Object> param, @HeaderMap Map<String, Object> header);
-	
+
+
+	@POST()
+	Observable<Object> uploads(
+			@Url String url,
+			@Body RequestBody body);
 }

@@ -31,7 +31,8 @@ public abstract class BaseApplication extends Application {
 
     public void initLogHelper() {
         Logger.init().
-                logLevel(LogLevel.FULL);
+                logLevel(LogLevel.FULL)
+                .methodCount(1);
     }
 
 

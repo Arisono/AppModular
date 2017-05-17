@@ -19,12 +19,13 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void initView() {
         HttpClient.getInstance().Api().send(new HttpClient.Builder()
-                        .url("getParam")//exception01//json
+                        .url("postParam")//exception01//json
                         .add("key1", "key1")
+                        .add("username","arison")
+                        .add("password","111111")
                         .header("hd1","header2")
-                        .method(Method.GET)
-                        .isDebug(true)
-                        .build(true), 
+                        .method(Method.POST)
+                        .build(), 
         new ResultSubscriber<>(new Result1Listener<Object>() {
 
             @Override
