@@ -35,6 +35,8 @@ public abstract class HttpBase {
 		}
 	};
 	
+	public void uploads(HttpClient builder,Subscriber<Object> s){}
+	
 	public abstract void get(HttpClient builder,Subscriber<Object> s);
 	
 	public abstract void post(HttpClient builder,Subscriber<Object> s);
