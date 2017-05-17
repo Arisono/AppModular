@@ -5,7 +5,7 @@ import com.alphabet.app.http.HttpClient;
 import com.alphabet.app.http.interceptor.CacheInterceptor;
 import com.alphabet.app.http.interceptor.LogInterceptor;
 import com.alphabet.app.http.retrofit.StringConverterFactory;
-import com.alphabet.app.http.rx.RxjavaUtils;
+import com.alphabet.app.http.rx.RxJavaUtils;
 import com.alphabet.app.http.service.ParamService;
 import com.alphabet.app.http.ssl.TrustAllCerts;
 import com.alphabet.app.http.ssl.TrustAllHostnameVerifier;
@@ -149,7 +149,7 @@ public class RetrofitImpl extends HttpBase {
 			public T call(T t) {
 				return (T) t;
 			}
-		}).subscribeOn(RxjavaUtils.getScheduler("newThread"))
+		}).subscribeOn(RxJavaUtils.getScheduler("newThread"))
 				.observeOn(AndroidSchedulers.mainThread())
 				.subscribe(s);
 	}

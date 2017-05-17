@@ -9,7 +9,7 @@ import rx.schedulers.Schedulers;
 /**
  * Created by Arison on 2017/5/15.
  */
-public class RxjavaUtils {
+public class RxJavaUtils {
 
     public static Scheduler getScheduler(final String name) {
        return Schedulers.from(Executors.newCachedThreadPool(new ThreadFactory() {
