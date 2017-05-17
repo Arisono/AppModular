@@ -60,7 +60,7 @@ public class RetrofitImpl extends HttpBase {
 
 	@Override
 	public void initClient() {
-	    paramService = initApi(ParamService.class);
+	  
 		Builder okBuilder = new Builder()
 				.connectTimeout(mbuilder.getConnectTimeout(), TimeUnit.SECONDS)
 				.readTimeout(mbuilder.getReadTimeout(), TimeUnit.SECONDS)
@@ -82,6 +82,8 @@ public class RetrofitImpl extends HttpBase {
 				.addConverterFactory(GsonConverterFactory.create(new Gson()))
 				.addCallAdapterFactory(RxJavaCallAdapterFactory.create())
 				.build();
+
+		paramService = initApi(ParamService.class);
 	}
 
 	public <T> T initApi(Class<T> service) {
