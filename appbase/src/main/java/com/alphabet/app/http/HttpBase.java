@@ -33,8 +33,12 @@ public abstract class HttpBase {
 		if (builder.getMethod()==Method.POST) {
 			post(builder, s);
 		}
-	};
-	
+	}
+	/** 
+	  * @desc:上传功能 
+	 *         支持多文件上传
+	  * @author：Arison on 2017/5/17
+	  */
 	public void uploads(HttpClient builder,Subscriber<Object> s){}
 	
 	public abstract void get(HttpClient builder,Subscriber<Object> s);
