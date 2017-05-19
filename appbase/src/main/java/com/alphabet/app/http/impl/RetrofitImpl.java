@@ -108,8 +108,8 @@ public class RetrofitImpl extends HttpBase {
 		MultipartBody.Builder builder = new MultipartBody.Builder();
 		builder.setType(MultipartBody.FORM);
 		//追加参数
-		for (String key : mbuilder.getParams().keySet()) {
-			Object object = mbuilder.getParams().get(key);
+		for (String key : mBuilder.getParams().keySet()) {
+			Object object = mBuilder.getParams().get(key);
 			if (!(object instanceof File)) {
 				builder.addFormDataPart(key, object.toString());
 			} else {
@@ -120,7 +120,7 @@ public class RetrofitImpl extends HttpBase {
 		}
 		//创建RequestBody
 		RequestBody body = builder.build();
-		Observable<Object> o=paramService.uploads(mbuilder.getBaseUrl(), body);
+		Observable<Object> o=paramService.uploads(mBuilder.getBaseUrl(), body);
 		toSubscribe(o, s);
 	}
 

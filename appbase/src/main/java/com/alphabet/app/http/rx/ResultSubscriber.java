@@ -49,24 +49,28 @@ public class ResultSubscriber<T> extends Subscriber<T> {
 			} else if (e instanceof ConnectException) {
 				Logger.e("ConnectException");
 				result2Listener.onFailure(e);
-			} else {
+			} else if(e instanceof HttpException){
 				HttpException he = (HttpException) e;
 				try {
 					result2Listener.onFailure(he.response().errorBody().string());
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
+			}else{
+				resultListener.onResponse((T)e);
 			}
 		}else{
 			if (e instanceof HttpException){
 				try {
-					resultListener.onResponse((T)((HttpException) e).response().errorBody().string());
+					resultListener.onResponse((T) ((HttpException) e).response().errorBody().string());
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
 			}else if (e instanceof SocketTimeoutException){
-				resultListener.onResponse((T)e);
+				resultListener.onResponse((T) e);
 			}else if(e instanceof ConnectException){
+				resultListener.onResponse((T)e);
+			}else {
 				resultListener.onResponse((T)e);
 			}
 			

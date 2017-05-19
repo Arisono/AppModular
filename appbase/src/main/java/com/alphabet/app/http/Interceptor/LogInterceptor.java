@@ -18,16 +18,24 @@ public class LogInterceptor implements Interceptor {
 	
 	private HttpClient builder;
 
+	public LogInterceptor() {
+	  super();
+	}
+	
+	public LogInterceptor(HttpClient builder) {
+		this.builder = builder;
+	}
+
 	@Override
 	public Response intercept(Chain chain) throws IOException {
 		  Request request = chain.request();
-		  Map<String, Object> headers=new HashMap<>();
-		  Map<String, Object> params=new HashMap<>();
-		  Map<String,Object> postParm=new HashMap<>();
+		  Map<String, Object> headers;
+		  Map<String, Object> params;
+		  Map<String,Object> postParam=new HashMap<>();
 		  //添加公共Header,公共参数
 		  if (builder!=null) {
-			headers=builder.getHeaders();
-			params=builder.getParams();
+			  headers=builder.getHeaders();
+			  params=builder.getParams();
 			if(!headers.isEmpty()){
 			  for (Map.Entry<String,Object> entry : headers.entrySet()) {
 				  request=request.newBuilder()
@@ -42,7 +50,7 @@ public class LogInterceptor implements Interceptor {
 						  HttpUrl httpUrl=request.url().newBuilder()
 								  .addQueryParameter(entry.getKey(), String.valueOf(entry.getValue()))
 								  .build();
-						  postParm.put(entry.getKey(),  String.valueOf(entry.getValue()));
+						  postParam.put(entry.getKey(),  String.valueOf(entry.getValue()));
 						  request=request.newBuilder().url(httpUrl).build();
 						
 					} 
@@ -52,11 +60,11 @@ public class LogInterceptor implements Interceptor {
 						  FormBody.Builder bodyBuilder = new FormBody.Builder();
 						  FormBody formBody = (FormBody) request.body();
 						  for (int i = 0; i < formBody.size(); i++) {
-								postParm.put(formBody.encodedName(i), formBody.encodedValue(i));
+								postParam.put(formBody.encodedName(i), formBody.encodedValue(i));
 				                bodyBuilder.addEncoded(formBody.encodedName(i), formBody.encodedValue(i));
 				            }
-						  for (Map.Entry<String, Object> entry : params.entrySet()) {
-							  postParm.put(entry.getKey(), String.valueOf(entry.getValue()));
+						  for (Map.Entry<String, Object> entry :params.entrySet()) {
+							  postParam.put(entry.getKey(), String.valueOf(entry.getValue()));
 							  formBody = bodyBuilder
 					                    .addEncoded(entry.getKey(), String.valueOf(entry.getValue()))
 					                    .build();
@@ -77,7 +85,7 @@ public class LogInterceptor implements Interceptor {
 					 .methodCount(0);
 			 Logger.i("url:" + JSON.toJSONString(response.request().url().toString()));
 			 Logger.i("headers:"+ JSON.toJSONString(response.request().headers().toMultimap()));
-			 Logger.i("params:" + JSON.toJSONString(postParm));
+			 Logger.i("params:" + JSON.toJSONString(postParam));
 			 Logger.init("PRETTYLOGGER")
 					 .methodCount(1);
 		}
