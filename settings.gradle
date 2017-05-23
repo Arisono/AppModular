@@ -1,1 +1,2 @@
-include ':app', ':appbase', ':ImageLoader'
+include ':app', ':app_network', ':ImageLoader', ':app_core'
+project(':ImageLoader').projectDir = new File('app_ThirdPart/ImageLoader')

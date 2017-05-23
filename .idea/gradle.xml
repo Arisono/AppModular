@@ -10,9 +10,10 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/ImageLoader" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/appbase" />
+            <option value="$PROJECT_DIR$/app_ThirdPart/ImageLoader" />
+            <option value="$PROJECT_DIR$/app_core" />
+            <option value="$PROJECT_DIR$/app_network" />
           </set>
         </option>
       </GradleProjectSettings>

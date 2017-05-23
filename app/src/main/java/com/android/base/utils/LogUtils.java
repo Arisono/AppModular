@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 /**
   * @desc:简易版的日志打印 
+ *  @deprecated 过时
  *         类：行号：长log
   * @author：Arison on 2017/5/15
   */
