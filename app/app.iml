@@ -111,9 +111,9 @@
     <orderEntry type="library" exported="" name="appcompat-v7-24.2.1" level="project" />
     <orderEntry type="library" exported="" name="support-vector-drawable-24.2.1" level="project" />
     <orderEntry type="library" exported="" name="support-core-utils-24.2.1" level="project" />
+    <orderEntry type="library" exported="" name="gson-2.7" level="project" />
     <orderEntry type="library" exported="" name="adapter-rxjava-2.1.0" level="project" />
     <orderEntry type="library" exported="" name="retrofit-2.1.0" level="project" />
-    <orderEntry type="library" exported="" name="gson-2.7" level="project" />
     <orderEntry type="library" exported="" name="converter-gson-2.1.0" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-24.2.1" level="project" />
     <orderEntry type="library" exported="" name="okhttp-3.4.1" level="project" />
@@ -121,6 +121,7 @@
     <orderEntry type="library" exported="" name="glide-3.8.0" level="project" />
     <orderEntry type="library" exported="" name="butterknife-annotations-8.0.0" level="project" />
     <orderEntry type="module" module-name="ImageLoader" exported="" />
+    <orderEntry type="module" module-name="SuperToast" exported="" />
     <orderEntry type="module" module-name="app_network" exported="" />
   </component>
 </module>
