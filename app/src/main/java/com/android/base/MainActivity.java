@@ -11,6 +11,8 @@ import com.alphabet.app.http.rx.ResultSubscriber;
 import com.alphabet.core.utils.FileUtils;
 import com.alphabet.core.utils.ScreenUtils;
 import com.alphabet.library.imageloader.ImageLoaderUtil;
+import com.github.johnpersano.supertoasts.library.Style;
+import com.github.johnpersano.supertoasts.library.SuperActivityToast;
 import com.orhanobut.logger.Logger;
 
 import java.io.File;
@@ -46,7 +48,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private void testMessage() {
-        
+        SuperActivityToast.create(this, "Hello world!", Style.DURATION_LONG).show();
     }
 
     private void testImageLoader() {
