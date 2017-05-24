@@ -38,9 +38,15 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void initView() {
         ButterKnife.bind(this);
+        
+        testMessage();
       
         testHttpApi();
         testImageLoader();
+    }
+
+    private void testMessage() {
+        
     }
 
     private void testImageLoader() {
