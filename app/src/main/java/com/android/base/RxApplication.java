@@ -4,6 +4,7 @@ import com.alphabet.app.base.BaseApplication;
 import com.alphabet.app.http.HttpClient;
 import com.alphabet.app.http.cache.CacheType;
 import com.alphabet.app.http.impl.RetrofitImpl;
+import com.alphabet.core.utils.Utils;
 
 /**
  * Created by Arison on 2017/5/15.
@@ -14,6 +15,8 @@ public class RxApplication extends BaseApplication {
 
    
     public void init() {
+        Utils.init(this);
+        
         new HttpClient.Builder(BASE_URL)//根路径
                 .add("CommonParam1", "公共请求参数1")//公共参数  //局部可累加
                 .add("CommonParam2", "公共请求参数2")

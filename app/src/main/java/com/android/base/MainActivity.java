@@ -2,6 +2,7 @@ package com.android.base;
 
 
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.alphabet.app.base.BaseActivity;
 import com.alphabet.app.http.HttpClient;
@@ -11,8 +12,7 @@ import com.alphabet.app.http.rx.ResultSubscriber;
 import com.alphabet.core.utils.FileUtils;
 import com.alphabet.core.utils.ScreenUtils;
 import com.alphabet.library.imageloader.ImageLoaderUtil;
-import com.github.johnpersano.supertoasts.library.Style;
-import com.github.johnpersano.supertoasts.library.SuperActivityToast;
+import com.alphabet.message.toast.ToastUtils;
 import com.orhanobut.logger.Logger;
 
 import java.io.File;
@@ -31,6 +31,8 @@ public class MainActivity extends BaseActivity {
     ImageView ivCircle;
     @BindView(R.id.iv_circle1)
     ImageView ivCircle1;
+    @BindView(R.id.rl_content)
+    RelativeLayout rl_content;
 
     @Override
     protected int getLayoutId() {
@@ -48,7 +50,14 @@ public class MainActivity extends BaseActivity {
     }
 
     private void testMessage() {
-        SuperActivityToast.create(this, "Hello world!", Style.DURATION_LONG).show();
+
+        ToastUtils.getInstance().show("系统api消息提醒");
+
+        ToastUtils.getInstance().show(this,"系统activity");
+
+
+        
+        
     }
 
     private void testImageLoader() {
