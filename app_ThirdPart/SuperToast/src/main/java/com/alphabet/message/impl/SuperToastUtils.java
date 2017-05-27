@@ -46,7 +46,12 @@ public class SuperToastUtils implements BaseToast{
 
     @Override
     public void showAtTop(String text) {
-
+        new SuperToast(Utils.getContext()).setText(text)
+                .setDuration(Style.DURATION_VERY_LONG)
+                .setColor(PaletteUtils.getTransparentColor(PaletteUtils.DARK_GREY))
+                .setAnimations(Style.ANIMATIONS_FADE)
+                .setFrame(Style.FRAME_STANDARD)
+                .show();
     }
 
     @Override

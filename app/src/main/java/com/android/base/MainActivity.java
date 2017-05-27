@@ -54,7 +54,7 @@ public class MainActivity extends BaseActivity {
         ToastUtils.create().Builder().show("系统api消息提醒");
         
 
-        ToastUtils.create().Builder().showAtBottom(this,"你点击我啊！");
+        //ToastUtils.create().Builder().showAtBottom(this,"你点击我啊！");
         
         
     }
