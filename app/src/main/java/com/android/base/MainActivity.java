@@ -12,7 +12,7 @@ import com.alphabet.app.http.rx.ResultSubscriber;
 import com.alphabet.core.utils.FileUtils;
 import com.alphabet.core.utils.ScreenUtils;
 import com.alphabet.library.imageloader.ImageLoaderUtil;
-import com.alphabet.message.toast.ToastUtils;
+import com.alphabet.message.ToastUtils;
 import com.orhanobut.logger.Logger;
 
 import java.io.File;
@@ -51,13 +51,17 @@ public class MainActivity extends BaseActivity {
 
     private void testMessage() {
 
-        ToastUtils.getInstance().show("系统api消息提醒");
+        ToastUtils.create().Builder().show("系统api消息提醒");
+        
 
-        ToastUtils.getInstance().show(this,"系统activity");
-
-
+        ToastUtils.create().Builder().showAtBottom(this,"你点击我啊！");
         
         
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 
     private void testImageLoader() {
