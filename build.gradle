@@ -1,4 +1,4 @@
-
+apply from: "version.gradle"
 
 buildscript {
     repositories {

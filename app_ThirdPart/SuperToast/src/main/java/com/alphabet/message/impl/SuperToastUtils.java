@@ -1,5 +1,6 @@
 package com.alphabet.message.impl;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Parcelable;
 import android.view.Gravity;
@@ -12,6 +13,7 @@ import com.github.johnpersano.supertoasts.library.SuperActivityToast;
 import com.github.johnpersano.supertoasts.library.SuperToast;
 import com.github.johnpersano.supertoasts.library.utils.PaletteUtils;
 import com.orhanobut.logger.Logger;
+import com.tapadoo.alerter.Alerter;
 
 /**
  * 暂时做成工具类，后面调整灵活切换
@@ -51,22 +53,43 @@ public class SuperToastUtils implements BaseToast{
                 .setColor(PaletteUtils.getTransparentColor(PaletteUtils.DARK_GREY))
                 .setAnimations(Style.ANIMATIONS_FADE)
                 .setFrame(Style.FRAME_STANDARD)
+                .setGravity(Gravity.TOP)
                 .show();
     }
 
     @Override
     public void showAtCenter(String text) {
-
+        new SuperToast(Utils.getContext()).setText(text)
+                .setDuration(Style.DURATION_VERY_LONG)
+                .setColor(PaletteUtils.getTransparentColor(PaletteUtils.DARK_GREY))
+                .setAnimations(Style.ANIMATIONS_FADE)
+                .setFrame(Style.FRAME_STANDARD)
+                .setGravity(Gravity.CENTER)
+                .show();
     }
 
     @Override
     public void showAtBottom(String text) {
-
+        new SuperToast(Utils.getContext()).setText(text)
+                .setDuration(Style.DURATION_VERY_LONG)
+                .setColor(PaletteUtils.getTransparentColor(PaletteUtils.DARK_GREY))
+                .setAnimations(Style.ANIMATIONS_FADE)
+                .setFrame(Style.FRAME_STANDARD)
+                .setGravity(Gravity.BOTTOM)
+                .show();
     }
 
     @Override
     public void showAtNotiftion(String text) {
+        new SuperToast(Utils.getContext()).setText(text)
+                .setDuration(Style.DURATION_VERY_LONG)
+                .setColor(PaletteUtils.getTransparentColor(PaletteUtils.DARK_GREY))
+                .setAnimations(Style.ANIMATIONS_FADE)
+                .setFrame(Style.FRAME_LOLLIPOP)
+                .setGravity(Gravity.TOP)
+                .show();
 
+      
     }
 
     @Override
@@ -79,7 +102,7 @@ public class SuperToastUtils implements BaseToast{
                 .setAnimations(Style.ANIMATIONS_FADE)
                 .setColor(PaletteUtils.getTransparentColor(PaletteUtils.DARK_GREY))
                 .setFrame(Style.FRAME_STANDARD)
-                .setGravity(Gravity.BOTTOM | Gravity.CENTER)
+                //.setGravity(Gravity.BOTTOM | Gravity.CENTER)
                 .show();
     }
 
@@ -130,13 +153,16 @@ public class SuperToastUtils implements BaseToast{
                 .setAnimations(Style.ANIMATIONS_FADE)
                 .setColor(PaletteUtils.getTransparentColor(PaletteUtils.DARK_GREY))
                 .setFrame(Style.FRAME_LOLLIPOP)
-                .setGravity(Gravity.BOTTOM | Gravity.DISPLAY_CLIP_HORIZONTAL)
+               // .setGravity(Gravity.BOTTOM | Gravity.DISPLAY_CLIP_HORIZONTAL)
                 .show();
         
     }
 
     @Override
     public void showAtNotiftion(Context ct, String text) {
-
+        Alerter.create((Activity) ct)
+                .setTitle("Alert Title")
+                .setText("Alert text...")
+                .show();
     }
 }

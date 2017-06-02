@@ -1,6 +1,7 @@
 package com.android.base;
 
 
+import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
@@ -33,6 +34,9 @@ public class MainActivity extends BaseActivity {
     ImageView ivCircle1;
     @BindView(R.id.rl_content)
     RelativeLayout rl_content;
+    
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
 
     @Override
     protected int getLayoutId() {
@@ -42,7 +46,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void initView() {
         ButterKnife.bind(this);
-        
+        setSupportActionBar(toolbar);
         testMessage();
       
         testHttpApi();
@@ -50,13 +54,12 @@ public class MainActivity extends BaseActivity {
     }
 
     private void testMessage() {
-
-        ToastUtils.create().Builder().show("系统api消息提醒");
+//        ToastUtils.create().Builder().showAtTop("显示在顶部！");
+//        ToastUtils.create().Builder().showAtCenter("显示在中央！");
+//        ToastUtils.create().Builder().showAtBottom("显示在底部");
+        //ToastUtils.create().Builder().showAtNotiftion("显示在通知栏");
         
-
-        //ToastUtils.create().Builder().showAtBottom(this,"你点击我啊！");
-        
-        
+        ToastUtils.create().Builder().showAtNotiftion(this,"显示在顶部");
     }
 
     @Override
