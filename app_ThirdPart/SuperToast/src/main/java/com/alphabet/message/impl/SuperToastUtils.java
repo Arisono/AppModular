@@ -161,8 +161,8 @@ public class SuperToastUtils implements BaseToast{
     @Override
     public void showAtNotiftion(Context ct, String text) {
         Alerter.create((Activity) ct)
-                .setTitle("Alert Title")
-                .setText("Alert text...")
+                .setTitle(((Activity) ct).getTitle().toString())
+                .setText(text)
                 .show();
     }
 }

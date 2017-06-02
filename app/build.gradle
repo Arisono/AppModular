@@ -26,7 +26,8 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile deps.junit
     compile deps.appcompatV7
-  
+    compile deps.design
+    compile deps.supportV4  
 
     compile deps.butterknife
     apt deps.butterknifeCompiler

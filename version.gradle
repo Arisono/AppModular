@@ -15,7 +15,7 @@ ext {
 
     depsVersion = [
             junitVersion      : '4.12',
-            supportVersion    : '24.2.1',
+            supportVersion    : '25.1.1',
             butterknifeVersion: '8.2.1',
             fastjsonVersion   : '1.2.24',
             logVersion        : '1.15',
