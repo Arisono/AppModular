@@ -14,24 +14,24 @@ import java.lang.reflect.Field;
  */
 public class ScreenUtils {
 
-    public static int dip2px(Context context, float dpValue) {
-        final float scale = context.getResources().getDisplayMetrics().density;
+    public static int dip2px( float dpValue) {
+        final float scale = Utils.getContext().getResources().getDisplayMetrics().density;
         return (int) (dpValue * scale + 0.5f);
     }
 
 
-    public static int px2dip(Context context, float pxValue) {
-        final float scale = context.getResources().getDisplayMetrics().density;
+    public static int px2dip( float pxValue) {
+        final float scale = Utils.getContext().getResources().getDisplayMetrics().density;
         return (int) (pxValue / scale + 0.5f);
     }
 
-    public static int px2sp(Context context, float pxValue) {
-        final float scale = context.getResources().getDisplayMetrics().density;
+    public static int px2sp( float pxValue) {
+        final float scale = Utils.getContext().getResources().getDisplayMetrics().density;
         return (int) (pxValue / scale + 0.5f);
     }
 
-    public static int sp2px(Context context, float spValue) {
-        final float scale = context.getResources().getDisplayMetrics().density;
+    public static int sp2px(float spValue) {
+        final float scale =Utils.getContext().getResources().getDisplayMetrics().density;
         return (int) (spValue * scale + 0.5f);
     }
 

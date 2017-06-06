@@ -2,6 +2,7 @@ package com.alphabet.message.impl;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Parcelable;
 import android.view.Gravity;
 import android.view.View;
@@ -19,15 +20,15 @@ import com.tapadoo.alerter.Alerter;
  * 暂时做成工具类，后面调整灵活切换
  * Created by Arison on 2017/5/25.
  */
-public class SuperToastUtils implements BaseToast{
+public class SuperToastImpl implements BaseToast{
     
-    private static SuperToastUtils instance;
+    private static SuperToastImpl instance;
     
-    public static SuperToastUtils getInstance(){
+    public static SuperToastImpl getInstance(){
         if (instance==null){
-            synchronized (SuperToastUtils.class){
+            synchronized (SuperToastImpl.class){
                 if (instance==null){
-                    instance=new SuperToastUtils();
+                    instance=new SuperToastImpl();
                 }
             }
         }
@@ -50,7 +51,7 @@ public class SuperToastUtils implements BaseToast{
     public void showAtTop(String text) {
         new SuperToast(Utils.getContext()).setText(text)
                 .setDuration(Style.DURATION_VERY_LONG)
-                .setColor(PaletteUtils.getTransparentColor(PaletteUtils.DARK_GREY))
+                .setColor(Color.parseColor("#A6424242"))
                 .setAnimations(Style.ANIMATIONS_FADE)
                 .setFrame(Style.FRAME_STANDARD)
                 .setGravity(Gravity.TOP)

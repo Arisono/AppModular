@@ -12,6 +12,7 @@ import com.alphabet.app.http.rx.Result1Listener;
 import com.alphabet.app.http.rx.ResultSubscriber;
 import com.alphabet.core.utils.FileUtils;
 import com.alphabet.message.ToastUtils;
+import com.alphabet.message.impl.ToastImpl;
 import com.orhanobut.logger.Logger;
 import com.tapadoo.alerter.Alerter;
 import com.tapadoo.alerter.OnHideAlertListener;
@@ -76,12 +77,12 @@ public class MainActivity extends BaseActivity {
 //        ToastUtils.create().Builder().showAtBottom("显示在底部");
         //ToastUtils.create().Builder().showAtNotiftion("显示在通知栏");
         
-       new android.os.Handler().postDelayed(new Runnable() {
-           @Override
-           public void run() {
-               ToastUtils.create().Builder().showAtNotiftion(MainActivity.this,"显示在顶部");
-           }
-       },10);
+//       new android.os.Handler().postDelayed(new Runnable() {
+//           @Override
+//           public void run() {
+//               ToastUtils.create().Builder().showAtNotiftion(MainActivity.this,"显示在顶部");
+//           }
+//       },10);
     }
 
     @Override
@@ -163,8 +164,9 @@ public class MainActivity extends BaseActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btnAlertColoured: {
-               showAlertColoured();
-                //ToastUtils.create().Builder().showAtNotiftion(MainActivity.this,"显示在顶部");
+          ToastUtils.create(ToastImpl.getInstance()).Builder().showAtBottom("开发app");
+               //showAlertColoured();
+           
                 break;
             }
             case R.id.btnAlertCustomIcon: {
