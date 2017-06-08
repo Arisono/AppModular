@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'me.tatarka.retrolambda'
+
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
     buildToolsVersion rootProject.ext.android.buildToolsVersion
@@ -16,21 +18,21 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
     compile project(':app_network')
     compile project(':ImageLoader')
     compile project(':SuperToast')
-    
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile deps.junit
     compile deps.appcompatV7
     compile deps.design
-    compile deps.supportV4  
-
+    compile deps.supportV4
     compile deps.butterknife
     apt deps.butterknifeCompiler
-  
-
 }
