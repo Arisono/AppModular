@@ -35,9 +35,9 @@ public abstract class HttpBase {
 		}
 	}
 	/** 
-	  * @desc:上传功能 
-	 *         支持多文件上传
-	  * @author：Arison on 2017/5/17
+	  * @desc上传功能 
+	  *         支持多文件上传
+	  * 
 	  */
 	public void uploads(HttpClient builder,Subscriber<Object> s){}
 	

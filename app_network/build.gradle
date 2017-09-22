@@ -1,4 +1,20 @@
 apply plugin: 'com.android.library'
+/********************start upload bintray config******************************************/
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'com.github.dcendents.android-maven'
+
+def siteUrl = 'https://github.com/Arisono/AppModular'   // 项目的主页
+def gitUrl = 'https://github.com/Arisono/AppModular.git'   // Git仓库的url
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+
+def disVersion='1.0.9'//TODO 页面展示版本号
+version = "1.0.9" //TODO 真实发布版本号
+group = "com.alphabet.app" //最终引用形式，如compile 'com.alphabet.app:1.0.0'，其中lfilepicker在后面配置
+/********************end upload bintray config******************************************/
+
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
@@ -18,11 +34,12 @@ android {
 }
 
 dependencies {
-    compile project(':app_core')
+
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile deps.junit
     compile deps.appcompatV7
-    
+
+    compile deps.logger
     compile deps.rxjava
     compile deps.rxandroid
     compile deps.okhttp
@@ -32,3 +49,175 @@ dependencies {
     compile deps.fastjson
     
 }
+
+/********************start upload bintray config******************************************/
+bintray {
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
+    pkg {
+        repo = 'maven'//自己创建的仓库名字
+        name = 'AppNetwork'//上传到JCenter的名字,最终引用的名字
+        websiteUrl = siteUrl
+        vcsUrl = gitUrl
+        licenses = ['MIT']//不能随便写，只能是仓库创建时选择的license type
+        userOrg = 'appmodular' //自己创建的organization名称
+        publish = true // 是否是公开项目，公开别人可以引用
+
+        version {
+            name =disVersion 
+            desc = 'AppBase-NetWork'//描述，自己定义
+            released = new Date()
+            vcsTag =disVersion
+            attributes = ['gradle-plugin': 'com.use.less:com.use.less.gradle:gradle-useless-plugin']
+        }
+    }
+    configurations = ['archives']
+}
+
+install {
+    repositories.mavenInstaller {
+        // This generates POM.xml with proper parameters
+        pom {
+            project {
+                packaging 'aar'
+                // Add your description here
+                name 'arison Android'
+                description 'arison open library.'
+                url siteUrl
+                // Set your license
+                licenses {
+                    license {
+                        name 'MIT' //和之前自己定义的协议一致
+                        url 'https://raw.githubusercontent.com/minggo620/Pluto-Android/master/LICENSE'
+                    }
+                }
+                developers {
+                    developer {
+                        id 'Arisono'        //填写bintray或者github的用户名
+                        name 'Arisono'         //姓名
+                        email 'arisono@aliyun.com'//邮箱
+                    }
+                }
+                scm {
+                    connection gitUrl
+                    developerConnection gitUrl
+                    url siteUrl
+                }
+            }
+        }
+    }
+}
+
+task makeJar(type: Copy) {
+    delete 'build/libs/appNetwork.jar' //删除已经存在的jar包
+    from('build/intermediates/bundles/release/')//从该目录下加载要打包的文件
+    into('build/libs/')//jar包的保存目录
+    include('classes.jar')//设置过滤，只打包classes文件
+    rename('classes.jar', 'appNetwork.jar')//重命名，mylibrary.jar 根据自己的需求设置
+}
+makeJar.dependsOn(build)
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+task javadoc(type: Javadoc) {
+    failOnError false //必须添加以免出错
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+javadoc {
+    options {
+        //如果你的项目里面有中文注释的话，必须将格式设置为UTF-8，不然会出现乱码
+        encoding "UTF-8"
+        charSet 'UTF-8'
+        author true
+        version true
+        links "http://docs.oracle.com/javase/8/docs/api"
+    }
+}
+/********************end upload bintray config******************************************/
+
+
+
+
+/*def siteUrl = 'https://github.com/Arisono/AppModular'      // 项目的主页
+def gitUrl = 'https://github.com/Arisono/AppModular.git'   // Git仓库的url
+group = "com.android.base" // Maven Group ID for the artifact，一般填你唯一的包名
+
+install {
+    repositories.mavenInstaller {
+        // This generates POM.xml with proper parameters
+        pom {
+            project {
+                packaging 'aar'
+                description 'Android NetWork Modular'
+                name 'Android NetWork Modular'  //项目描述
+                url siteUrl
+                licenses {
+                    license {
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer { // 开发者信息
+                        id 'arisono'
+                        name 'Arison'
+                        email 'arisono@aliyun.com'
+                    }
+                }
+                scm {
+                    connection gitUrl
+                    developerConnection gitUrl
+                    url siteUrl
+                }
+            }
+        }
+    }
+}
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+task javadoc(type: Javadoc) {
+    options.encoding = 'UTF-8'
+    source = 'src/main/java'
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+Properties properties = new Properties()
+
+// 加载本地配置
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+bintray {
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
+    configurations = ['archives']
+    pkg {
+        repo = "AppPublic"  //发布到Bintray的那个仓库里，默认账户有四个库，我们这里上传到maven库
+        name = "AppNetwork"  //发布到Bintray上的项目名字
+        websiteUrl = siteUrl
+        vcsUrl = gitUrl
+        licenses = ["Apache-2.0"]
+        publish = true
+    }*/
+/*
+}*/

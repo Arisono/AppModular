@@ -25,7 +25,7 @@ android {
 }
 
 dependencies {
-    compile project(':app_network')
+   
     compile project(':ImageLoader')
     compile project(':SuperToast')
     compile fileTree(include: ['*.jar'], dir: 'libs')
@@ -35,4 +35,6 @@ dependencies {
     compile deps.supportV4
     compile deps.butterknife
     apt deps.butterknifeCompiler
+
+    compile 'com.alphabet.app:app_network:1.0.1'
 }

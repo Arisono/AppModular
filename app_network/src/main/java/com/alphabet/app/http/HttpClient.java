@@ -9,7 +9,7 @@ import java.util.Map;
 
 /**
  * @author Arison
- * @desc:使用构建者设计模式封装
+ * @desc 使用构建者设计模式封装
  */
 public class HttpClient {
 

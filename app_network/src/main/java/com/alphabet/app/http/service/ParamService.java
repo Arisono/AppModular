@@ -14,9 +14,9 @@ import retrofit2.http.Url;
 import rx.Observable;
 
 /**
- * @desc:主要用于网络请求
- * @name:ParamService
- * @method:Rxjava+Retrofit
+ * @des 主要用于网络请求
+ * @name ParamService
+ * @method Rxjava+Retrofit
  * @author Arison
  */
 public interface ParamService {
