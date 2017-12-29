@@ -1,6 +1,7 @@
 package com.android.base;
 
 
+import android.content.Intent;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Toast;
@@ -13,6 +14,7 @@ import com.alphabet.app.http.rx.ResultSubscriber;
 import com.alphabet.core.utils.FileUtils;
 import com.alphabet.message.ToastUtils;
 import com.alphabet.message.impl.ToastImpl;
+import com.android.base.web.RxWebActivity;
 import com.orhanobut.logger.Logger;
 import com.tapadoo.alerter.Alerter;
 import com.tapadoo.alerter.OnHideAlertListener;
@@ -36,7 +38,7 @@ public class MainActivity extends BaseActivity {
 //    ImageView ivCircle1;
 //    @BindView(R.id.rl_content)
 //    RelativeLayout rl_content;
-    
+
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
@@ -49,8 +51,8 @@ public class MainActivity extends BaseActivity {
     protected void initView() {
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
-        
-      
+
+
         testHttpApi();
 
         findViewById(R.id.btnAlertDefault).setOnClickListener(this);
@@ -61,7 +63,7 @@ public class MainActivity extends BaseActivity {
         findViewById(R.id.btnAlertVerbose).setOnClickListener(this);
         findViewById(R.id.btnAlertCallback).setOnClickListener(this);
         findViewById(R.id.btnAlertInfiniteDuration).setOnClickListener(this);
-       // testImageLoader();
+        // testImageLoader();
     }
 
 
@@ -76,7 +78,7 @@ public class MainActivity extends BaseActivity {
 //        ToastUtils.create().Builder().showAtCenter("显示在中央！");
 //        ToastUtils.create().Builder().showAtBottom("显示在底部");
         //ToastUtils.create().Builder().showAtNotiftion("显示在通知栏");
-        
+
 //       new android.os.Handler().postDelayed(new Runnable() {
 //           @Override
 //           public void run() {
@@ -134,10 +136,10 @@ public class MainActivity extends BaseActivity {
                 ));
         //上传文件
         HttpClient.getInstance().Api().uploads(new HttpClient.Builder()
-                .url("uploadFiles")
-                .add("key", new File(FileUtils.getSDRoot() + "/uu/chat/chatImage.png"))
-                .add("key1", new File(FileUtils.getSDRoot() + "/uu/chat/head4.png"))
-                .build(),
+                        .url("uploadFiles")
+                        .add("key", new File(FileUtils.getSDRoot() + "/uu/chat/chatImage.png"))
+                        .add("key1", new File(FileUtils.getSDRoot() + "/uu/chat/head4.png"))
+                        .build(),
                 new ResultSubscriber<>(new Result1Listener<Object>() {
                     @Override
                     public void onResponse(Object o) {
@@ -145,7 +147,7 @@ public class MainActivity extends BaseActivity {
                     }
                 })
         );
-        
+
     }
 
     @Override
@@ -158,13 +160,18 @@ public class MainActivity extends BaseActivity {
     }
 
 
-
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btnAlertColoured: {
-          ToastUtils.create(ToastImpl.getInstance()).Builder().showAtBottom("开发app");
-               //showAlertColoured();
+                startActivity(new Intent(this , RxWebActivity.class));
+                
+             /*   Uri uri = Uri.parse("app://usoftchina.com");
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);*/
+             
+                ToastUtils.create(ToastImpl.getInstance()).Builder().showAtBottom("开发app");
+                //showAlertColoured();
            
                 break;
             }
@@ -201,7 +208,7 @@ public class MainActivity extends BaseActivity {
         Alerter.create(MainActivity.this)
                 .setTitle("Alert Title")
                 .setText("Alert text...")
-               // .disableOutsideTouch()
+                // .disableOutsideTouch()
                 .show();
     }
 
@@ -249,7 +256,7 @@ public class MainActivity extends BaseActivity {
                 .show();
     }
 
-    private void showAlertCallbacks(){
+    private void showAlertCallbacks() {
         Alerter.create(MainActivity.this)
                 .setTitle("Alert Title")
                 .setText("Alert text...")

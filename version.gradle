@@ -26,6 +26,7 @@ ext {
             glideVersion      : '3.8.0',
             supertoastsVersion: '2.0',
             alerterVersion    : '1.0.6',
+            advancedWebViewVersion: 'v3.0.0'
     ]
 
     deps = [
@@ -53,7 +54,10 @@ ext {
             glide             : 'com.github.bumptech.glide:glide:' + depsVersion.glideVersion,
             
             supertoasts       :'com.github.johnpersano:supertoasts:'+depsVersion.supertoastsVersion,
-            alerter            :'com.tapadoo.android:alerter:'+depsVersion.alerterVersion
+            alerter            :'com.tapadoo.android:alerter:'+depsVersion.alerterVersion,
+
+
+            advancedWebView    :'com.github.delight-im:Android-AdvancedWebView:'+depsVersion.advancedWebViewVersion
     ]
 }
   

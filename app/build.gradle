@@ -25,15 +25,17 @@ android {
 }
 
 dependencies {
-   
-    compile project(':ImageLoader')
-    compile project(':SuperToast')
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile deps.junit
+    
+    compile project(':ImageLoader')
+    compile project(':SuperToast')
+   
     compile deps.appcompatV7
     compile deps.design
     compile deps.supportV4
     compile deps.butterknife
+    compile deps.advancedWebView
     apt deps.butterknifeCompiler
 
     compile 'com.alphabet.app:app_network:1.0.1'
