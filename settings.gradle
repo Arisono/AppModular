@@ -1,4 +1,4 @@
-include ':app', ':app_network', ':ImageLoader', ':app_core', ':SuperToast'
+include ':app', ':app_network', ':ImageLoader', ':app_core', ':SuperToast', ':test_network'
 
 project(':ImageLoader').projectDir = new File('app_ThirdPart/ImageLoader')
 project(':SuperToast').projectDir = new File('app_ThirdPart/SuperToast')

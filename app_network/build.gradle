@@ -31,6 +31,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
@@ -110,7 +115,7 @@ install {
 
 task makeJar(type: Copy) {
     delete 'build/libs/appNetwork.jar' //删除已经存在的jar包
-    from('build/intermediates/bundles/release/')//从该目录下加载要打包的文件
+    from('build/intermediates/bundles/default/')//从该目录下加载要打包的文件
     into('build/libs/')//jar包的保存目录
     include('classes.jar')//设置过滤，只打包classes文件
     rename('classes.jar', 'appNetwork.jar')//重命名，mylibrary.jar 根据自己的需求设置
