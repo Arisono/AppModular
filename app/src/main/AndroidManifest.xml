@@ -16,7 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".web.RxWebActivity"></activity>
+        <activity android:name=".web.RxWebActivity" />
+        <activity android:name=".test.BottomSheetActivity"></activity>
     </application>
 
 </manifest>

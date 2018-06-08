@@ -22,6 +22,10 @@ allprojects {
         maven {
             url 'https://dl.bintray.com/appmodular/maven/'
         }
+
+        maven {
+            url 'https://maven.google.com'
+        }
     }
 }
 

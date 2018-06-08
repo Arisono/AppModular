@@ -14,7 +14,7 @@ import com.alphabet.app.http.rx.ResultSubscriber;
 import com.alphabet.core.utils.FileUtils;
 import com.alphabet.message.ToastUtils;
 import com.alphabet.message.impl.ToastImpl;
-import com.android.base.web.RxWebActivity;
+import com.android.base.test.BottomSheetActivity;
 import com.orhanobut.logger.Logger;
 import com.tapadoo.alerter.Alerter;
 import com.tapadoo.alerter.OnHideAlertListener;
@@ -164,15 +164,9 @@ public class MainActivity extends BaseActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btnAlertColoured: {
-                startActivity(new Intent(this , RxWebActivity.class));
-                
-             /*   Uri uri = Uri.parse("app://usoftchina.com");
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                startActivity(intent);*/
-             
+                startActivity(new Intent(this , BottomSheetActivity.class));
                 ToastUtils.create(ToastImpl.getInstance()).Builder().showAtBottom("开发app");
                 //showAlertColoured();
-           
                 break;
             }
             case R.id.btnAlertCustomIcon: {

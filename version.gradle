@@ -4,10 +4,10 @@ Shared gradle properties
 
 ext {
     android = [
-            compileSdkVersion: 24,
-            buildToolsVersion: '25.0.0',
+            compileSdkVersion: 26,
+            buildToolsVersion: '27.0.0',
             minSdkVersion    : 16,
-            targetSdkVersion : 24,
+            targetSdkVersion : 26,
             javaVersion      : JavaVersion.VERSION_1_8,
             versionCode      : 1,
             versionName      : '1.0',
@@ -15,7 +15,7 @@ ext {
 
     depsVersion = [
             junitVersion      : '4.12',
-            supportVersion    : '25.1.1',
+            supportVersion    : '26.1.0',
             butterknifeVersion: '8.2.1',
             fastjsonVersion   : '1.2.24',
             logVersion        : '1.15',
@@ -26,7 +26,9 @@ ext {
             glideVersion      : '3.8.0',
             supertoastsVersion: '2.0',
             alerterVersion    : '1.0.6',
+            bottomsheetVersion  : '1.5.3',
             advancedWebViewVersion: 'v3.0.0'
+            
     ]
 
     deps = [
@@ -56,7 +58,7 @@ ext {
             supertoasts       :'com.github.johnpersano:supertoasts:'+depsVersion.supertoastsVersion,
             alerter            :'com.tapadoo.android:alerter:'+depsVersion.alerterVersion,
 
-
+            bottomsheet                :'com.flipboard:bottomsheet-core:'+depsVersion.bottomsheetVersion,
             advancedWebView    :'com.github.delight-im:Android-AdvancedWebView:'+depsVersion.advancedWebViewVersion
     ]
 }

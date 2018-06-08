@@ -27,14 +27,15 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile deps.junit
-    
+
     compile project(':ImageLoader')
     compile project(':SuperToast')
-   
+
     compile deps.appcompatV7
     compile deps.design
     compile deps.supportV4
     compile deps.butterknife
+    compile deps.bottomsheet
     compile deps.advancedWebView
     apt deps.butterknifeCompiler
 

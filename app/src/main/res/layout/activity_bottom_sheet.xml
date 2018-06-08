@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#FFFFFF"
+    android:orientation="vertical"
+    tools:context="com.android.base.test.BottomSheetActivity">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp" 
+        android:gravity="center"
+        android:text="标题栏"
+        android:background="@color/alerter_default_success_background"/>
+<ListView
+    android:id="@+id/lv_data"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+</ListView>
+</LinearLayout>

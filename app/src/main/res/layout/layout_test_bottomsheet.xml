@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.flipboard.bottomsheet.BottomSheetLayout
+        android:id="@+id/bottom_sheet_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="50dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorAccent">
+
+            <com.android.base.view.CustomerListView
+                android:id="@+id/lv_left"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:fadingEdge="none"
+                android:scrollbars="none">
+
+            </com.android.base.view.CustomerListView>
+
+        
+
+            <com.android.base.view.CustomerListView
+                android:id="@+id/lv_right"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fadingEdge="none"
+                android:scrollbars="none"
+                android:scrollingCache="false"
+                android:cacheColorHint="#00000000">
+
+            </com.android.base.view.CustomerListView>
+        </LinearLayout>
+    </com.flipboard.bottomsheet.BottomSheetLayout>
+
+    <Button
+        android:id="@+id/bt_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true" />
+</RelativeLayout>
